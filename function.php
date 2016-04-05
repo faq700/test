@@ -1,7 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 2
- * Date: 02.04.2016
- * Time: 19:44
- */
+
+function settime($time) {
+    $settime=[];
+    $settime=getdate($time);
+    return $settime;
+}
