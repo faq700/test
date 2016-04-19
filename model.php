@@ -41,5 +41,6 @@ function morenews($news_date,$news_name){
     $res=mysqli_query($link,$query)
     or
     die(mysqli_errno($link).mysqli_error($link));
-    return $res;
+    $row=mysqli_fetch_row($res);
+    return $row;
 }
