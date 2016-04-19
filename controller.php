@@ -4,7 +4,10 @@ require_once('model.php');
 require_once('function.php');
 
 if ($_POST['news_name']) {
-    addnews();
+    if (empty($_POST['news'])) {
+        $_SESSION['err']='не введен текст новости';
+    }else{
+    $addnews=new Query;
 }
 
 $news=news();

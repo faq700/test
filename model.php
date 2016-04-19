@@ -1,5 +1,21 @@
 <?php
 
+class Query {
+    public $query;
+    public $news_name;
+    public $news;
+       public function ($query, $news_name, $news) {
+            $link=mysqli_connect('localhost','root','','test.loc')
+            or
+            die(mysqli_errno($link).mysqli_error($link));
+            mysqli_query($link,$query)
+            or
+            die(mysqli_errno($link).mysqli_error($link));
+        }
+}
+
+$addnews="INSERT into news (news_name, news_date, news) VALUES ('$news_name', '$time', '$news')";
+
 function addnews() {
     if (empty($_POST['news'])) {
         $_SESSION['err']='не введен текст новости';
