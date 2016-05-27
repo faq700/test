@@ -1,23 +1,36 @@
 <?php
 
-require_once ('controller.php');
+function __autoload ($loadedfile) {
+    if (file_exists(__DIR__  . '/controllers/' . $loadedfile . '.php')) {
+        require_once __DIR__  . '/controllers/' . $loadedfile . '.php';
+    }elseif (file_exists(__DIR__  . '/models/' . $loadedfile . '.php')) {
+        require_once __DIR__  . '/models/' . $loadedfile . '.php';
+    }elseif (file_exists(__DIR__  . '/classes/' . $loadedfile . '.php')) {
+        require_once __DIR__  . '/classes/' . $loadedfile . '.php';
+    }
+}
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Новостная лента</title>
-</head>
-<body>
+if ($_POST['news_name']) {
+    if (empty($_POST['news'])) {
+        $_SESSION['err']='не введен текст новости';
+    }else{
+        $_GET['action']='addnews';
+    }
+}
 
-<p><?php echo $_SESSION['err']; ?></p>
-<?php unset($_SESSION['err']); ?>
+if ($_GET['action']=='morenews'){
+    if($_GET['news_date'] and $_GET['news_name']){
+        $_GET['controller']='Morenewscontroller';
+    }else{
+        $_SESSION['err']='ошибка';
+        unset ($_GET['action']);
+    }
+}
 
-<?php  include $view.'.php'; ?>
+$controller = isset ($_GET['controller']) ? $_GET['controller'] : 'Maincontroller';
+$action = isset ($_GET['action']) ? $_GET['action'] : 'allnews';
 
+$ctrl = new $controller;
 
-
-</body>
-</html>
+$ctrl->$action();
 
