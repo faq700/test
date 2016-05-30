@@ -10,7 +10,7 @@
 <?php unset($_SESSION['err']); ?>
 
 <?php
-print_r($this->data);
+//print_r($this->data);
 foreach($nw as $new) {
     $time=$new['news_date'];
     $settime=new Settime($time);
@@ -19,7 +19,7 @@ foreach($nw as $new) {
 
     <h2><?php echo $new['news_name'];  ?></h2>
     <h5>Новость добавлена: <?php echo $settime['hours']; ?>:<?php echo $settime['minutes']; ?>   <?php echo $settime['mday'],'.',$settime['mon'],'.',$settime['year']; ?> </h5>
-    <p><a href="?action=morenews&news_name=<?php echo $new['news_name']; ?>&news_date=<?php echo $new['news_date']; ?>">Подробнее</a></p>
+    <p><a href="?action=morenews&controller=Morenewscontroller&id=<?php echo $new['id']; ?>">Подробнее</a></p>
 
 <?php };  ?>
 

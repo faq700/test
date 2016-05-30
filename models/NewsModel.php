@@ -1,7 +1,16 @@
 <?php
 
-class MainModel {
+class NewsModel
+    extends AbstractModel
+    {
 
+    static protected $table='news';
+
+   // public $id;
+
+
+
+    /*
     public static function getall () {
         $sql="SELECT news_name, news_date, news FROM news ORDER BY news_date DESC";
         $DB = new DB();
@@ -28,5 +37,5 @@ class MainModel {
             $res=$DB->query($sql);
             $res=TRUE ? $_SESSION['err']='новость добавлена' : $_SESSION['err']='новость не добавлена';
         }
-    }
+    }*/
 }

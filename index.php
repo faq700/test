@@ -18,14 +18,6 @@ if ($_POST['news_name']) {
     }
 }
 
-if ($_GET['action']=='morenews'){
-    if($_GET['news_date'] and $_GET['news_name']){
-        $_GET['controller']='Morenewscontroller';
-    }else{
-        $_SESSION['err']='ошибка';
-        unset ($_GET['action']);
-    }
-}
 
 $controller = isset ($_GET['controller']) ? $_GET['controller'] : 'Maincontroller';
 $action = isset ($_GET['action']) ? $_GET['action'] : 'allnews';
