@@ -11,11 +11,12 @@ class Maincontroller {
     }
 
     public function addnews() {
-        $params=[];
-        $params['news_name']=$_POST['news_name'];
-        $params['news']=$_POST['news'];
-        $params['news_date']=time();
-        NewsModel::add($params);
+        $param= new NewsModel();
+        $param->news_name=$_POST['news_name'];
+        $param->news=$_POST['news'];
+        $param->news_date=time();
+        $param->add();
+        unset($_POST['news_name']);
         $this->allnews();
         unset($_POST['news_name']);
     }
