@@ -18,6 +18,5 @@ class Maincontroller {
         $param->add();
         unset($_POST['news_name']);
         $this->allnews();
-        unset($_POST['news_name']);
     }
 }
