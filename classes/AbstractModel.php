@@ -30,19 +30,28 @@ protected $data=[];
     }
 
     public function add (){
-        $coloms=[];
-        $coloms=array_keys($this->data);
-        $data=[];
-        foreach ($coloms as $k=>$v){
-            $data[':' . $v] = $this->data[$v];
+        if ($this->isisset()==false) {
+            $coloms = [];
+            $coloms = array_keys($this->data);
+            $data = [];
+            foreach ($coloms as $k => $v) {
+                $data[':' . $v] = $this->data[$v];
+            }
+            $sql = 'INSERT INTO ' . static::$table . ' (' . implode(', ', $coloms) . ') VALUES (' . implode(', ', array_keys($data)) . ')';
+            $db = new DB();
+            $res = $db->query($sql, $data);
+        }else{
+            throw new E404Ecxeption ();
         }
-        $sql='INSERT INTO '  . static ::$table . ' (' . implode(', ', $coloms) .') VALUES (' . implode(', ', array_keys($data)). ')';
-        print_r($sql);
-        $db = new DB();
-        $res=$db->query($sql, $data);
     }
 
-
+    public function isisset() {
+        if (isset($this->data['news_name'])) {
+            $sql='SELECT * FROM '  . static ::$table . ' WHERE news_name=' .$this->data['news_name'] ;
+            $db = new DB();
+            return $res=$db -> query($sql);
+        }
+    }
 
 
 
