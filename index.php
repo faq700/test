@@ -7,6 +7,11 @@ function __autoload ($loadedfile) {
         require_once __DIR__  . '/models/' . $loadedfile . '.php';
     }elseif (file_exists(__DIR__  . '/classes/' . $loadedfile . '.php')) {
         require_once __DIR__  . '/classes/' . $loadedfile . '.php';
+    }else{
+        $path=explode('\\', $loadedfile);
+        $path[0]= __DIR__;
+        $path=implode(DIRECTORY_SEPARATOR, $path);
+        require $path . '.php';
     }
 }
 
